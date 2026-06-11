@@ -147,4 +147,4 @@ export function getProductsByCategory(category: string): Product[] {
   return PRODUCTS.filter(p => p.category === category)
 }
 
-export const CATEGORIES = [...new Set(PRODUCTS.map(p => p.category))]
+export const CATEGORIES = Array.from(new Set(PRODUCTS.map(p => p.category)))

@@ -9,7 +9,7 @@ import { useState } from 'react'
 
 export default function ProductDetailPage({ params }: { params: { id: string } }) {
   const product = getProductById(params.id)
-  const { addItem, openCart } = useCartStore() as { addItem: (p: typeof product) => void; openCart: () => void }
+  const { addItem } = useCartStore()
   const [added, setAdded] = useState(false)
 
   if (!product) return notFound()
