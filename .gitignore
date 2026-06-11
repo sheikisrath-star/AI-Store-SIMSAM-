@@ -2,3 +2,5 @@
 .cache/
 .env
 .env.local
+.next/
+build-error.txt
