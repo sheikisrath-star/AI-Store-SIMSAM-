@@ -1,201 +1,428 @@
 import Link from 'next/link'
 import { PRODUCTS } from '@/lib/data'
 import ProductCard from '@/components/ProductCard'
-import { ArrowRight, Zap, Shield, Globe, Star, TrendingUp, Users, Award, CheckCircle } from 'lucide-react'
+import DataStream from '@/components/DataStream'
+import { ArrowRight, Shield, Globe, Star, TrendingUp, CheckCircle, Zap, Award } from 'lucide-react'
 
 export default function HomePage() {
   const featured = PRODUCTS.filter(p => p.badge === 'Best Seller')
-  const hot = PRODUCTS.filter(p => p.badge === 'Hot' || p.badge === 'Premium')
+  const hot      = PRODUCTS.filter(p => p.badge === 'Hot' || p.badge === 'Premium')
 
   return (
-    <div>
-      {/* ── Hero ── */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-slate-950 via-emerald-950 to-teal-900 pt-28 pb-32 px-4 text-white">
-        {/* Background pattern */}
-        <div className="absolute inset-0 opacity-10" style={{backgroundImage: 'radial-gradient(circle at 20% 50%, #10b981 0%, transparent 50%), radial-gradient(circle at 80% 20%, #0d9488 0%, transparent 50%)' }} />
+    <div style={{ position: 'relative', zIndex: 1 }}>
+      <DataStream />
 
-        <div className="relative max-w-6xl mx-auto text-center">
-          <div className="inline-flex items-center gap-2 bg-emerald-500/20 border border-emerald-500/30 text-emerald-300 text-sm font-medium px-4 py-1.5 rounded-full mb-8">
-            <span className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse" />
-            Trusted by 5,000+ enterprise sustainability professionals worldwide
-          </div>
+      {/* ══ SPLIT HERO ══ */}
+      <section
+        className="relative grid md:grid-cols-2 overflow-hidden"
+        style={{ marginTop: '68px', minHeight: '520px' }}
+      >
+        {/* Left panel */}
+        <div
+          className="relative flex flex-col justify-center px-8 sm:px-14 py-16"
+          style={{
+            background: 'linear-gradient(135deg,#060614 0%,#0d0d22 60%,#080818 100%)',
+            zIndex: 1,
+          }}
+        >
+          {/* Diagonal edge glow */}
+          <div style={{
+            position:'absolute',top:0,right:'-24px',bottom:0,
+            width:'48px',
+            background:'linear-gradient(to bottom,transparent,rgba(0,229,197,0.12),rgba(0,229,197,0.2),rgba(0,229,197,0.12),transparent)',
+            transform:'skewX(-6deg)',
+            zIndex:5,
+          }} />
 
-          <h1 className="text-5xl sm:text-7xl font-black tracking-tight mb-6 leading-[1.05]">
-            The #1 Marketplace for<br/>
-            <span className="bg-gradient-to-r from-emerald-400 to-teal-300 bg-clip-text text-transparent">
-              Green Tech & AI Solutions
-            </span>
+          <div className="eyebrow">Enterprise Solutions Platform</div>
+          <h1
+            className="font-black leading-tight mb-5"
+            style={{ fontFamily:'Orbitron,system-ui', fontSize:'clamp(1.8rem,4vw,3rem)' }}
+          >
+            THE #1 GREEN<br />
+            <span className="text-neon-glow">TECH & AI</span><br />
+            MARKETPLACE
           </h1>
-
-          <p className="text-xl text-slate-300 max-w-2xl mx-auto mb-10 leading-relaxed">
-            Enterprise-grade ESG frameworks, carbon intelligence tools, and AI automation assets — built for global sustainability leaders. Instant delivery. Lifetime updates.
+          <p className="text-sm mb-8 max-w-md leading-relaxed" style={{ color:'var(--text-dim)' }}>
+            Enterprise-grade ESG frameworks, carbon intelligence tools, and AI automation
+            assets — built for global sustainability leaders. Instant delivery, lifetime updates.
           </p>
-
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
-            <Link href="/products" className="group inline-flex items-center gap-2 bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-white font-bold px-8 py-4 rounded-2xl transition-all text-base shadow-lg shadow-emerald-500/25">
-              Explore All Solutions <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+          <div className="flex flex-wrap gap-3">
+            <Link href="/products" className="btn-geo">
+              Explore Solutions <ArrowRight className="w-4 h-4" />
             </Link>
-            <Link href="/vendor" className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 border border-white/20 text-white font-semibold px-8 py-4 rounded-2xl transition-all text-base">
-              Sell on VerdaSync AI <TrendingUp className="w-4 h-4" />
+            <Link href="/vendor" className="btn-geo-outline">
+              Sell Here <TrendingUp className="w-4 h-4" />
             </Link>
           </div>
 
-          {/* Stats bar */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 max-w-3xl mx-auto">
+          {/* Stats row */}
+          <div className="flex gap-8 mt-10">
             {[
-              { value: '12+', label: 'Enterprise Solutions' },
-              { value: '40+', label: 'Countries Served' },
-              { value: '$597', label: 'Max Product Value' },
-              { value: '100%', label: 'Digital Delivery' },
+              { value: '12+', label: 'Solutions' },
+              { value: '40+', label: 'Countries' },
+              { value: '5K+', label: 'Professionals' },
             ].map(s => (
-              <div key={s.label} className="text-center">
-                <div className="text-3xl font-black text-emerald-400">{s.value}</div>
-                <div className="text-xs text-slate-400 mt-1">{s.label}</div>
+              <div key={s.label}>
+                <div
+                  style={{ fontFamily:'Orbitron,system-ui', fontSize:'1.4rem', fontWeight:900, color:'var(--neon)', textShadow:'0 0 15px rgba(0,229,197,0.4)' }}
+                >
+                  {s.value}
+                </div>
+                <div style={{ fontSize:'0.65rem', color:'var(--text-muted)', letterSpacing:'0.12em', textTransform:'uppercase', marginTop:'2px' }}>
+                  {s.label}
+                </div>
               </div>
             ))}
           </div>
         </div>
+
+        {/* Neon vertical divider */}
+        <div className="neon-divider hidden md:block" />
+
+        {/* Right panel */}
+        <div
+          className="relative flex flex-col justify-center px-8 sm:px-14 py-16"
+          style={{
+            background: 'linear-gradient(135deg,#060e0c 0%,#0a1a14 60%,#060c0a 100%)',
+            zIndex: 1,
+          }}
+        >
+          <div className="eyebrow" style={{ '--neon':'#ff0077' } as React.CSSProperties}>
+            <span style={{ background:'var(--magenta)', boxShadow:'0 0 8px var(--magenta)' }} />
+            <span style={{ color:'var(--magenta)', marginLeft:'-16px' }}>New This Week</span>
+          </div>
+          <h1
+            className="font-black leading-tight mb-5"
+            style={{ fontFamily:'Orbitron,system-ui', fontSize:'clamp(1.8rem,4vw,3rem)' }}
+          >
+            NEW AI<br />
+            <span className="text-mag-glow">DROPS &</span><br />
+            TRENDING
+          </h1>
+          <p className="text-sm mb-8 max-w-md leading-relaxed" style={{ color:'var(--text-dim)' }}>
+            Freshly certified frameworks, next-gen ESG reporting kits, and AI prompt
+            libraries updated for 2025 regulatory requirements.
+          </p>
+          <div className="flex flex-wrap gap-3">
+            <Link href="/products" className="btn-geo-mag">
+              New Arrivals <ArrowRight className="w-4 h-4" />
+            </Link>
+            <Link href="/products" className="btn-geo-outline">
+              View Deals
+            </Link>
+          </div>
+
+          {/* Price highlight */}
+          <div className="mt-10 flex items-center gap-4">
+            <div>
+              <div style={{ fontSize:'0.65rem', letterSpacing:'0.15em', color:'var(--text-muted)', textTransform:'uppercase', marginBottom:'4px' }}>Starting from</div>
+              <div style={{ fontFamily:'Orbitron,system-ui', fontSize:'2rem', fontWeight:900, color:'var(--magenta)', textShadow:'0 0 20px rgba(255,0,119,0.4)' }}>
+                $49
+              </div>
+            </div>
+            <div style={{ fontSize:'0.72rem', color:'var(--text-muted)', maxWidth:'120px', lineHeight:1.5 }}>
+              100% digital. Instant access after checkout.
+            </div>
+          </div>
+        </div>
       </section>
 
-      {/* ── Trust bar ── */}
-      <section className="bg-white border-b border-slate-100 py-5 px-4">
-        <div className="max-w-5xl mx-auto flex flex-wrap justify-center gap-8">
+      {/* ══ STATS BAR ══ */}
+      <div
+        style={{
+          position:'relative', zIndex:1,
+          background:'rgba(0,229,197,0.03)',
+          borderTop:'1px solid rgba(0,229,197,0.12)',
+          borderBottom:'1px solid rgba(0,229,197,0.12)',
+        }}
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 grid grid-cols-2 sm:grid-cols-4 gap-4">
           {[
-            { icon: <Shield className="w-4 h-4" />, text: '30-day money back guarantee' },
-            { icon: <Zap className="w-4 h-4" />, text: 'Instant digital delivery' },
-            { icon: <Globe className="w-4 h-4" />, text: 'Used in 40+ countries' },
-            { icon: <Star className="w-4 h-4" />, text: '4.9/5 from 2,000+ reviews' },
-            { icon: <Award className="w-4 h-4" />, text: 'Enterprise-grade quality' },
+            { icon: <Shield className="w-4 h-4" />,  text: '30-day money-back guarantee' },
+            { icon: <Zap className="w-4 h-4" />,     text: 'Instant digital delivery' },
+            { icon: <Globe className="w-4 h-4" />,   text: 'Used in 40+ countries' },
+            { icon: <Star className="w-4 h-4" />,    text: '4.9/5 from 2,000+ reviews' },
           ].map(item => (
-            <div key={item.text} className="flex items-center gap-2 text-sm text-slate-600">
-              <span className="text-emerald-500">{item.icon}</span>
+            <div key={item.text} className="flex items-center gap-2 text-xs" style={{ color:'var(--text-dim)' }}>
+              <span style={{ color:'var(--neon)' }}>{item.icon}</span>
               {item.text}
             </div>
           ))}
         </div>
-      </section>
+      </div>
 
-      {/* ── Best Sellers ── */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 py-20">
-        <div className="flex items-end justify-between mb-10">
+      {/* ══ BEST SELLERS ══ */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 py-16" style={{ position:'relative', zIndex:1 }}>
+        <div className="flex items-end justify-between mb-8">
           <div>
-            <p className="text-xs font-semibold text-emerald-600 uppercase tracking-widest mb-2">Top Picks</p>
-            <h2 className="text-3xl font-black text-slate-900">Best Selling Solutions</h2>
+            <div className="eyebrow">Top Picks</div>
+            <h2 style={{ fontFamily:'Orbitron,system-ui', fontSize:'1.4rem', fontWeight:700, color:'var(--text)' }}>
+              BEST SELLING SOLUTIONS
+            </h2>
           </div>
-          <Link href="/products" className="text-emerald-600 hover:text-emerald-700 font-semibold text-sm flex items-center gap-1">
-            View all 12 <ArrowRight className="w-4 h-4" />
-          </Link>
+          <Link href="/products" className="see-all">View all 12</Link>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
           {featured.slice(0, 3).map(product => <ProductCard key={product.id} product={product} />)}
         </div>
       </section>
 
-      {/* ── Multi-vendor banner ── */}
-      <section className="mx-4 sm:mx-6 lg:mx-auto max-w-7xl mb-20">
-        <div className="rounded-3xl p-8 sm:p-12 grid md:grid-cols-2 gap-8 items-center" style={{background: 'linear-gradient(135deg, #0f172a 0%, #064e3b 50%, #134e4a 100%)'}}>
-          <div className="text-white">
-            <div className="inline-flex items-center gap-2 bg-emerald-500/20 border border-emerald-500/30 text-emerald-300 text-xs font-semibold px-3 py-1 rounded-full mb-4 uppercase tracking-widest">
-              Vendor Marketplace
-            </div>
-            <h2 className="text-3xl font-black mb-4">Sell Your Green Tech & AI Products Here</h2>
-            <p className="text-slate-300 mb-6 leading-relaxed">Are you a sustainability consultant, AI specialist, or green tech creator? List your digital products on VerdaSync AI and reach enterprise buyers in 40+ countries. Keep 80–85% of every sale.</p>
-            <div className="space-y-3 mb-8">
+      {/* ══ TRENDING STRIP ══ */}
+      <div
+        style={{
+          position:'relative', zIndex:1,
+          borderTop:'1px solid rgba(0,229,197,0.12)',
+          borderBottom:'1px solid rgba(0,229,197,0.12)',
+          padding:'1.5rem 0',
+          background:'rgba(0,229,197,0.02)',
+          overflow:'hidden',
+        }}
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 mb-3">
+          <div className="eyebrow">Trending Now</div>
+        </div>
+        <div
+          className="flex gap-3 overflow-x-auto px-4 sm:px-6"
+          style={{ maxWidth:'1280px', margin:'0 auto', scrollbarWidth:'none' }}
+        >
+          {PRODUCTS.slice(0, 8).map((p, i) => (
+            <Link
+              key={p.id}
+              href={`/product/${p.id}`}
+              className="flex-shrink-0 flex items-center gap-3 transition-all"
+              style={{
+                width:'230px',
+                background:'var(--card-bg)',
+                border:'1px solid rgba(0,229,197,0.18)',
+                borderRadius:'2px',
+                padding:'0.85rem',
+                textDecoration:'none',
+                position:'relative',
+              }}
+            >
+              <div
+                style={{
+                  width:'40px', height:'40px', flexShrink:0,
+                  display:'flex', alignItems:'center', justifyContent:'center',
+                  fontSize:'1.4rem',
+                  background:'rgba(0,229,197,0.05)',
+                  border:'1px solid rgba(0,229,197,0.15)',
+                }}
+              >
+                {p.emoji}
+              </div>
+              <div>
+                <div style={{ fontSize:'0.75rem', fontWeight:600, color:'var(--text)', lineHeight:1.3, marginBottom:'2px' }}>
+                  {p.name.split(' ').slice(0,3).join(' ')}
+                </div>
+                <div style={{ fontFamily:'Orbitron,system-ui', fontSize:'0.8rem', fontWeight:700, color:'var(--neon)' }}>
+                  ${p.price}
+                </div>
+              </div>
+              <div
+                style={{
+                  position:'absolute', top:'6px', right:'8px',
+                  fontFamily:'Orbitron,system-ui', fontSize:'0.5rem',
+                  color:'var(--text-muted)', letterSpacing:'0.1em',
+                }}
+              >
+                #{i + 1}
+              </div>
+            </Link>
+          ))}
+        </div>
+      </div>
+
+      {/* ══ VENDOR BANNER ══ */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 py-14" style={{ position:'relative', zIndex:1 }}>
+        <div
+          className="grid md:grid-cols-2 gap-8 items-center p-8 sm:p-12"
+          style={{
+            background:'linear-gradient(135deg,#06060e 0%,#0c0c18 40%,#060e0c 100%)',
+            border:'1px solid rgba(0,229,197,0.2)',
+            borderRadius:'2px',
+            position:'relative',
+            overflow:'hidden',
+          }}
+        >
+          {/* Glow accent */}
+          <div style={{
+            position:'absolute', top:'50%', left:'50%',
+            transform:'translate(-50%,-50%)',
+            width:'500px', height:'250px',
+            background:'radial-gradient(ellipse,rgba(0,229,197,0.06) 0%,transparent 70%)',
+            pointerEvents:'none',
+          }} />
+          <div style={{ position:'relative', zIndex:1 }}>
+            <div className="eyebrow">Vendor Marketplace</div>
+            <h2
+              style={{ fontFamily:'Orbitron,system-ui', fontSize:'1.5rem', fontWeight:700, color:'var(--text)', marginBottom:'1rem', lineHeight:1.2 }}
+            >
+              SELL YOUR GREEN TECH &amp; AI PRODUCTS
+            </h2>
+            <p className="text-sm leading-relaxed mb-6" style={{ color:'var(--text-dim)', maxWidth:'400px' }}>
+              Reach enterprise buyers in 40+ countries. Keep 80–85% of every sale. Zero commission for your first 3 months.
+            </p>
+            <div className="space-y-2 mb-6">
               {[
                 '0% commission for your first 3 months',
-                'Instant payouts via PayHere or Payoneer',
+                'Instant payouts via PayHere',
                 'Reach Fortune 500 sustainability teams',
-                'Free listing review & quality certification',
+                'Free listing review &amp; quality certification',
               ].map(f => (
-                <div key={f} className="flex items-center gap-2 text-sm text-emerald-200">
-                  <CheckCircle className="w-4 h-4 text-emerald-400 flex-shrink-0" />
-                  {f}
+                <div key={f} className="flex items-center gap-2 text-sm" style={{ color:'rgba(0,229,197,0.8)' }}>
+                  <CheckCircle className="w-4 h-4 flex-shrink-0" style={{ color:'var(--neon)' }} />
+                  <span dangerouslySetInnerHTML={{ __html: f }} />
                 </div>
               ))}
             </div>
-            <Link href="/vendor" className="inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-400 text-white font-bold px-6 py-3 rounded-xl transition-colors">
-              Apply as a Vendor <ArrowRight className="w-4 h-4" />
+            <Link href="/vendor" className="btn-geo">
+              Apply as Vendor <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
-          <div className="grid grid-cols-2 gap-4">
+
+          <div className="grid grid-cols-2 gap-4" style={{ position:'relative', zIndex:1 }}>
             {[
-              { icon: '💰', label: 'Avg. vendor monthly earnings', value: '$2,400+' },
-              { icon: '🌍', label: 'Active buyer countries', value: '40+' },
-              { icon: '📦', label: 'Products listed', value: '12+' },
-              { icon: '⚡', label: 'Setup time', value: '< 24hrs' },
+              { icon:'💰', label:'Avg. monthly earnings', value:'$2,400+' },
+              { icon:'🌍', label:'Active buyer countries', value:'40+' },
+              { icon:'📦', label:'Products listed', value:'12+' },
+              { icon:'⚡', label:'Setup time', value:'< 24hrs' },
             ].map(s => (
-              <div key={s.label} className="bg-white/10 backdrop-blur rounded-2xl p-4 text-white text-center">
-                <div className="text-2xl mb-2">{s.icon}</div>
-                <div className="text-xl font-black text-emerald-300">{s.value}</div>
-                <div className="text-xs text-slate-400 mt-1">{s.label}</div>
+              <div
+                key={s.label}
+                className="text-center p-4"
+                style={{
+                  background:'rgba(0,229,197,0.04)',
+                  border:'1px solid rgba(0,229,197,0.15)',
+                  borderRadius:'2px',
+                }}
+              >
+                <div style={{ fontSize:'1.6rem', marginBottom:'6px' }}>{s.icon}</div>
+                <div style={{ fontFamily:'Orbitron,system-ui', fontSize:'1.1rem', fontWeight:900, color:'var(--neon)' }}>{s.value}</div>
+                <div style={{ fontSize:'0.65rem', color:'var(--text-muted)', marginTop:'2px', letterSpacing:'0.05em' }}>{s.label}</div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ── How it works ── */}
-      <section className="bg-slate-50 py-20 px-4 border-y border-slate-100">
+      {/* ══ HOW IT WORKS ══ */}
+      <section
+        style={{
+          position:'relative', zIndex:1,
+          borderTop:'1px solid rgba(0,229,197,0.1)',
+          borderBottom:'1px solid rgba(0,229,197,0.1)',
+          background:'rgba(0,229,197,0.015)',
+          padding:'4rem 1rem',
+        }}
+      >
         <div className="max-w-5xl mx-auto text-center">
-          <p className="text-xs font-semibold text-emerald-600 uppercase tracking-widest mb-3">Simple Process</p>
-          <h2 className="text-3xl font-black text-slate-900 mb-4">How VerdaSync AI Works</h2>
-          <p className="text-slate-500 max-w-2xl mx-auto mb-12">From ESG challenge to enterprise solution in minutes — not months.</p>
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+          <div className="eyebrow justify-center" style={{ justifyContent:'center' }}>Simple Process</div>
+          <h2
+            style={{ fontFamily:'Orbitron,system-ui', fontSize:'1.4rem', fontWeight:700, color:'var(--text)', marginBottom:'0.5rem' }}
+          >
+            HOW VERDASYNC AI WORKS
+          </h2>
+          <p className="text-sm mb-10" style={{ color:'var(--text-dim)' }}>From ESG challenge to enterprise solution in minutes — not months.</p>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {[
-              { icon: '🎯', title: 'Choose Framework', desc: 'Browse 12 enterprise categories and select the solution for your sustainability challenge' },
-              { icon: '💳', title: 'Secure Checkout', desc: 'Pay securely via PayHere, card, or bank transfer. Accepted in 100+ currencies worldwide' },
-              { icon: '⚡', title: 'Instant Download', desc: 'Receive your complete framework, templates, and AI toolkits immediately after payment' },
-              { icon: '📈', title: 'Deploy & Measure', desc: 'Implement proven methodologies and track your ESG improvement outcomes' },
+              { icon:'🎯', step:'01', title:'Choose Framework', desc:'Browse 12 enterprise categories and select your solution' },
+              { icon:'💳', step:'02', title:'Secure Checkout',  desc:'Pay securely via PayHere — accepted worldwide' },
+              { icon:'⚡', step:'03', title:'Instant Download', desc:'Receive complete frameworks, templates & AI toolkits immediately' },
+              { icon:'📈', step:'04', title:'Deploy & Measure', desc:'Implement proven methodologies and track ESG outcomes' },
             ].map(item => (
               <div key={item.title} className="text-center">
-                <div className="w-14 h-14 bg-white border border-slate-200 rounded-2xl flex items-center justify-center text-2xl mx-auto mb-4 shadow-sm">{item.icon}</div>
-                <h3 className="font-bold text-slate-900 mb-2">{item.title}</h3>
-                <p className="text-sm text-slate-500">{item.desc}</p>
+                <div
+                  style={{
+                    width:'56px', height:'56px',
+                    background:'rgba(0,229,197,0.06)',
+                    border:'1px solid rgba(0,229,197,0.2)',
+                    borderRadius:'2px',
+                    display:'flex', alignItems:'center', justifyContent:'center',
+                    fontSize:'1.6rem',
+                    margin:'0 auto 12px',
+                  }}
+                >
+                  {item.icon}
+                </div>
+                <div style={{ fontFamily:'Orbitron,system-ui', fontSize:'0.55rem', letterSpacing:'0.2em', color:'var(--neon)', marginBottom:'4px' }}>
+                  STEP {item.step}
+                </div>
+                <h3 style={{ fontSize:'0.88rem', fontWeight:700, color:'var(--text)', marginBottom:'6px' }}>{item.title}</h3>
+                <p style={{ fontSize:'0.72rem', color:'var(--text-dim)', lineHeight:1.55 }}>{item.desc}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ── Hot products ── */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 py-20">
-        <div className="flex items-end justify-between mb-10">
+      {/* ══ HOT PRODUCTS ══ */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 py-16" style={{ position:'relative', zIndex:1 }}>
+        <div className="flex items-end justify-between mb-8">
           <div>
-            <p className="text-xs font-semibold text-rose-600 uppercase tracking-widest mb-2">🔥 Trending Now</p>
-            <h2 className="text-3xl font-black text-slate-900">Hot This Month</h2>
+            <div className="eyebrow" style={{ color:'var(--magenta)' }}>
+              <span style={{ background:'var(--magenta)', width:'20px', height:'1px', display:'inline-block', boxShadow:'0 0 8px var(--magenta)' }} />
+              Trending Now
+            </div>
+            <h2 style={{ fontFamily:'Orbitron,system-ui', fontSize:'1.4rem', fontWeight:700, color:'var(--text)' }}>
+              HOT THIS MONTH
+            </h2>
           </div>
-          <Link href="/products" className="text-emerald-600 hover:text-emerald-700 font-semibold text-sm flex items-center gap-1">
-            See all <ArrowRight className="w-4 h-4" />
+          <Link href="/products" className="see-all" style={{ borderColor:'rgba(255,0,119,0.3)', color:'var(--magenta)' }}>
+            See all
           </Link>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {hot.slice(0, 3).map(product => <ProductCard key={product.id} product={product} />)}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+          {hot.slice(0, 3).map(product => <ProductCard key={product.id} product={product} hot />)}
         </div>
       </section>
 
-      {/* ── Categories ── */}
-      <section className="bg-white py-16 px-4 border-t border-slate-100">
+      {/* ══ CATEGORIES ══ */}
+      <section
+        style={{
+          position:'relative', zIndex:1,
+          borderTop:'1px solid rgba(0,229,197,0.1)',
+          padding:'3rem 1rem',
+        }}
+      >
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-10">
-            <p className="text-xs font-semibold text-emerald-600 uppercase tracking-widest mb-2">Browse by Domain</p>
-            <h2 className="text-3xl font-black text-slate-900">12 Enterprise Intelligence Domains</h2>
+          <div className="text-center mb-8">
+            <div className="eyebrow justify-center" style={{ justifyContent:'center' }}>Browse by Domain</div>
+            <h2 style={{ fontFamily:'Orbitron,system-ui', fontSize:'1.3rem', fontWeight:700, color:'var(--text)' }}>
+              12 ENTERPRISE INTELLIGENCE DOMAINS
+            </h2>
           </div>
-          <div className="flex flex-wrap justify-center gap-3">
+          <div className="flex flex-wrap justify-center gap-2">
             {[
-              { name: 'Green AI Core', emoji: '🌿' },
-              { name: 'Sustainable Capital', emoji: '💹' },
-              { name: 'Eco-Design', emoji: '🎨' },
-              { name: 'Supply Chain', emoji: '🔗' },
-              { name: 'ESG Reporting', emoji: '📊' },
-              { name: 'Green Media', emoji: '🎬' },
-              { name: 'Eco-Commerce', emoji: '🌍' },
-              { name: 'Operations', emoji: '⚙️' },
-              { name: 'Green Marketing', emoji: '📡' },
-              { name: 'Green Web3', emoji: '🔐' },
-              { name: 'Green HR', emoji: '🌱' },
-              { name: 'CleanTech Startup', emoji: '🚀' },
+              { name:'Green AI Core',       emoji:'🌿' },
+              { name:'Sustainable Capital', emoji:'💹' },
+              { name:'Eco-Design',          emoji:'🎨' },
+              { name:'Supply Chain',        emoji:'🔗' },
+              { name:'ESG Reporting',       emoji:'📊' },
+              { name:'Green Media',         emoji:'🎬' },
+              { name:'Eco-Commerce',        emoji:'🌍' },
+              { name:'Operations',          emoji:'⚙️' },
+              { name:'Green Marketing',     emoji:'📡' },
+              { name:'Green Web3',          emoji:'🔐' },
+              { name:'Green HR',            emoji:'🌱' },
+              { name:'CleanTech Startup',   emoji:'🚀' },
             ].map(cat => (
-              <Link key={cat.name} href="/products" className="bg-slate-50 border border-slate-200 hover:border-emerald-300 hover:bg-emerald-50 text-slate-700 hover:text-emerald-700 px-4 py-2.5 rounded-xl text-sm font-medium transition-all flex items-center gap-2">
+              <Link
+                key={cat.name}
+                href="/products"
+                className="flex items-center gap-2 text-xs font-medium tracking-wider transition-all"
+                style={{
+                  background:'rgba(0,229,197,0.04)',
+                  border:'1px solid rgba(0,229,197,0.18)',
+                  color:'var(--text-dim)',
+                  padding:'0.45rem 1rem',
+                  clipPath:'polygon(6px 0,100% 0,calc(100% - 6px) 100%,0 100%)',
+                  textDecoration:'none',
+                }}
+                onMouseEnter={e => { (e.currentTarget as HTMLElement).style.borderColor = 'var(--neon)'; (e.currentTarget as HTMLElement).style.color = 'var(--neon)'; (e.currentTarget as HTMLElement).style.background = 'rgba(0,229,197,0.08)' }}
+                onMouseLeave={e => { (e.currentTarget as HTMLElement).style.borderColor = 'rgba(0,229,197,0.18)'; (e.currentTarget as HTMLElement).style.color = 'var(--text-dim)'; (e.currentTarget as HTMLElement).style.background = 'rgba(0,229,197,0.04)' }}
+              >
                 <span>{cat.emoji}</span> {cat.name}
               </Link>
             ))}
@@ -203,53 +430,100 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── All Products ── */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 py-20">
+      {/* ══ ALL PRODUCTS ══ */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 py-16" style={{ position:'relative', zIndex:1 }}>
         <div className="text-center mb-10">
-          <h2 className="text-3xl font-black text-slate-900 mb-3">All Enterprise Solutions</h2>
-          <p className="text-slate-500">Every product includes lifetime updates, global compliance coverage, and a 30-day guarantee</p>
+          <div className="eyebrow justify-center" style={{ justifyContent:'center' }}>Full Catalogue</div>
+          <h2 style={{ fontFamily:'Orbitron,system-ui', fontSize:'1.4rem', fontWeight:700, color:'var(--text)', marginBottom:'0.5rem' }}>
+            ALL ENTERPRISE SOLUTIONS
+          </h2>
+          <p style={{ fontSize:'0.82rem', color:'var(--text-dim)' }}>
+            Every product includes lifetime updates, global compliance coverage, and a 30-day guarantee
+          </p>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {PRODUCTS.map(product => <ProductCard key={product.id} product={product} />)}
         </div>
       </section>
 
-      {/* ── Social proof ── */}
-      <section className="bg-slate-50 py-16 px-4 border-t border-slate-100">
+      {/* ══ TESTIMONIALS ══ */}
+      <section
+        style={{
+          position:'relative', zIndex:1,
+          borderTop:'1px solid rgba(0,229,197,0.1)',
+          background:'rgba(0,229,197,0.015)',
+          padding:'4rem 1rem',
+        }}
+      >
         <div className="max-w-5xl mx-auto text-center">
-          <p className="text-xs font-semibold text-emerald-600 uppercase tracking-widest mb-3">Trusted Worldwide</p>
-          <h2 className="text-2xl font-black text-slate-900 mb-10">What Enterprise Teams Say</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="eyebrow justify-center" style={{ justifyContent:'center' }}>Trusted Worldwide</div>
+          <h2 style={{ fontFamily:'Orbitron,system-ui', fontSize:'1.3rem', fontWeight:700, color:'var(--text)', marginBottom:'2.5rem' }}>
+            WHAT ENTERPRISE TEAMS SAY
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
             {[
               { quote: 'VerdaReport cut our CDP submission time from 6 weeks to 4 days. Exceptional framework.', name: 'Head of ESG, European Investment Fund', rating: 5 },
               { quote: 'VerdaChain gave us complete Scope 3 visibility across 400 suppliers. Worth every dollar.', name: 'Sustainability Director, Global Logistics Co.', rating: 5 },
               { quote: 'VerdaPrompt transformed how our team uses AI for sustainability storytelling. Incredible ROI.', name: 'Chief Sustainability Officer, Tech Enterprise', rating: 5 },
             ].map((t, i) => (
-              <div key={i} className="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm text-left">
-                <div className="flex mb-3">
-                  {[...Array(t.rating)].map((_, j) => <Star key={j} className="w-4 h-4 fill-yellow-400 text-yellow-400" />)}
+              <div
+                key={i}
+                className="text-left p-5"
+                style={{
+                  background:'var(--card-bg)',
+                  border:'1px solid rgba(0,229,197,0.18)',
+                  borderRadius:'2px',
+                  position:'relative',
+                }}
+              >
+                <div style={{ position:'absolute', top:0, left:0, right:0, height:'1px', background:'linear-gradient(to right,transparent,var(--neon),transparent)', opacity:0.4 }} />
+                <div className="flex mb-3" style={{ color:'#ffaa00' }}>
+                  {[...Array(t.rating)].map((_, j) => <Star key={j} className="w-3.5 h-3.5 fill-current" />)}
                 </div>
-                <p className="text-slate-700 text-sm leading-relaxed mb-4 italic">&ldquo;{t.quote}&rdquo;</p>
-                <p className="text-xs font-semibold text-slate-500">{t.name}</p>
+                <p className="text-sm leading-relaxed mb-4 italic" style={{ color:'var(--text-dim)' }}>&ldquo;{t.quote}&rdquo;</p>
+                <p style={{ fontSize:'0.7rem', fontWeight:600, color:'var(--text-muted)', letterSpacing:'0.08em' }}>{t.name}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ── Final CTA ── */}
-      <section className="px-4 py-20">
-        <div className="max-w-3xl mx-auto rounded-3xl p-12 text-center text-white" style={{background: 'linear-gradient(135deg, #065f46, #0f766e, #0369a1)'}}>
-          <div className="text-5xl mb-5">🌿</div>
-          <h2 className="text-3xl font-black mb-4">Ready to Lead the Green Transition?</h2>
-          <p className="text-emerald-100 mb-8 max-w-lg mx-auto">Join 5,000+ enterprise professionals using VerdaSync AI to hit net-zero targets, automate ESG compliance, and unlock sustainable revenue streams.</p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/products" className="bg-white text-emerald-700 font-bold px-8 py-3.5 rounded-xl hover:bg-emerald-50 transition-colors">
-              Browse All Solutions →
-            </Link>
-            <Link href="/vendor" className="bg-emerald-500/20 border border-emerald-400/30 text-white font-semibold px-8 py-3.5 rounded-xl hover:bg-emerald-500/30 transition-colors">
-              Become a Vendor
-            </Link>
+      {/* ══ FINAL CTA ══ */}
+      <section className="px-4 py-16" style={{ position:'relative', zIndex:1 }}>
+        <div
+          className="max-w-3xl mx-auto text-center p-10 sm:p-14"
+          style={{
+            background:'linear-gradient(135deg,#06060e,#0c0c18,#060e0c)',
+            border:'1px solid rgba(0,229,197,0.25)',
+            borderRadius:'2px',
+            position:'relative',
+            overflow:'hidden',
+          }}
+        >
+          <div style={{
+            position:'absolute', top:'50%', left:'50%', transform:'translate(-50%,-50%)',
+            width:'400px', height:'200px',
+            background:'radial-gradient(ellipse,rgba(0,229,197,0.07) 0%,transparent 70%)',
+            pointerEvents:'none',
+          }} />
+          <div style={{ position:'relative', zIndex:1 }}>
+            <div className="eyebrow justify-center" style={{ justifyContent:'center', marginBottom:'1rem' }}>Ready to Lead</div>
+            <h2
+              style={{ fontFamily:'Orbitron,system-ui', fontSize:'1.6rem', fontWeight:900, color:'var(--text)', marginBottom:'1rem', lineHeight:1.15 }}
+            >
+              LEAD THE<br /><span className="text-neon-glow">GREEN TRANSITION</span>
+            </h2>
+            <p className="text-sm mb-8 max-w-md mx-auto leading-relaxed" style={{ color:'var(--text-dim)' }}>
+              Join 5,000+ enterprise professionals using VerdaSync AI to hit net-zero targets, automate ESG compliance, and unlock sustainable revenue.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-3 justify-center">
+              <Link href="/products" className="btn-geo">
+                Browse All Solutions
+              </Link>
+              <Link href="/vendor" className="btn-geo-outline">
+                Become a Vendor
+              </Link>
+            </div>
           </div>
         </div>
       </section>
