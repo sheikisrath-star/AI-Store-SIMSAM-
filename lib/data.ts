@@ -1,4 +1,4 @@
-// VerdaSync AI - Product Catalog
+// VerdaSync AI - Product Catalog v2
 
 export type Product = {
   id: string
@@ -265,3 +265,4 @@ export function getProductsByCategory(category: string): Product[] {
 }
 
 export const CATEGORIES = Array.from(new Set(PRODUCTS.map(p => p.category)))
+
