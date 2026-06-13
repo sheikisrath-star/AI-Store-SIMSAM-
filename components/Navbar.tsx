@@ -19,8 +19,9 @@ export default function Navbar() {
         </Link>
 
         <div className="hidden sm:flex items-center gap-6 text-sm font-medium text-slate-600">
-          <Link href="/products" className="hover:text-atlas-600 transition-colors">Products</Link>
-          <Link href="/dashboard" className="hover:text-atlas-600 transition-colors">AI Dashboard</Link>
+          <Link href="/products" className="hover:text-emerald-600 transition-colors">Products</Link>
+          <Link href="/vendor" className="hover:text-emerald-600 transition-colors">Sell Here</Link>
+          <Link href="/dashboard" className="hover:text-emerald-600 transition-colors">Dashboard</Link>
         </div>
 
         <div className="flex items-center gap-3">
@@ -37,3 +38,5 @@ export default function Navbar() {
         </div>
       </div>
     </nav>
+  )
+}

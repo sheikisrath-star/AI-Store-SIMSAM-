@@ -214,7 +214,6 @@ export const PRODUCTS: Product[] = [
       'Green DeFi protocol evaluation and risk assessment',
       'Multi-jurisdiction Web3 sustainability compliance guide',
     ],
-    includes: ['Audit 
     includes: ['Audit Framework PDF', 'Smart Contract Templates', 'Compliance Checklist', 'Token Design Guide'],
   },
   {
