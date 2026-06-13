@@ -5,11 +5,11 @@ import Footer from '@/components/Footer'
 import CartSidebar from '@/components/CartSidebar'
 
 export const metadata: Metadata = {
-  title: 'AtlasAI Store — AI-Powered Digital Products',
-  description: 'World-class AI digital products. Built and marketed by autonomous AI agents.',
+  title: 'VerdaSync AI — Enterprise Green Tech & AI Solutions',
+  description: 'B2B Green Technology & AI SaaS platform. Enterprise-grade sustainability intelligence products for global organisations.',
   openGraph: {
-    title: 'AtlasAI Store',
-    description: 'AI-powered digital products store',
+    title: 'VerdaSync AI',
+    description: 'Enterprise Green Tech & AI SaaS platform for sustainability-driven organisations',
     type: 'website',
   },
 }
@@ -20,9 +20,4 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <Navbar />
         <CartSidebar />
-        <main className="min-h-screen pt-16">{children}</main>
-        <Footer />
-      </body>
-    </html>
-  )
-}
+        <main cl
