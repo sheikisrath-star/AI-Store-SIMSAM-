@@ -1,0 +1,21 @@
+# VerdaSync AI — Multi-Agent Platform Requirements
+# Install: pip install -r agents/requirements_agents.txt
+
+# Core AI SDK
+anthropic>=0.39.0
+
+# Data validation
+pydantic>=2.0.0
+
+# Async HTTP (for future real API integrations)
+httpx>=0.27.0
+
+# Template rendering (for agreement/invoice generation)
+jinja2>=3.1.0
+
+# Environment variable management
+python-dotenv>=1.0.0
+
+# Development / testing
+pytest>=8.0.0
+pytest-asyncio>=0.23.0
