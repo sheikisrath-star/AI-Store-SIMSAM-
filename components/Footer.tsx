@@ -13,7 +13,7 @@ export default function Footer() {
               </div>
               VerdaSync AI
             </Link>
-            <p className="text-sm leading-relaxed">Enterprise Green Tech & AI SaaS intelligence platform. Empowering organisations worldwide to achieve net-zero through cutting-edge sustainability frameworks.</p>
+            <p className="text-sm leading-relaxed">Enterprise Green Tech &amp; AI SaaS intelligence platform. Empowering organisations worldwide to achieve net-zero through cutting-edge sustainability frameworks.</p>
           </div>
           <div>
             <p className="font-semibold text-white mb-3 text-sm">Solutions</p>
@@ -31,5 +31,10 @@ export default function Footer() {
           </div>
         </div>
         <div className="border-t border-slate-800 pt-6 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs">
-          <p>© {new Date().getFullYear()} VerdaSync AI. All rights reserved. Worldwide B2B Green Tech & AI Solutions.</p>
- 
+          <p>© {new Date().getFullYear()} VerdaSync AI. All rights reserved. Worldwide B2B Green Tech &amp; AI Solutions.</p>
+          <p>🌿 Building a sustainable future through technology</p>
+        </div>
+      </div>
+    </footer>
+  )
+}
